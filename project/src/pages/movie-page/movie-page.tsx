@@ -1,4 +1,4 @@
-const MoviePage = () => {
+const MoviePage = () => (
   <div className='page-content'>
     <section className='catalog catalog--like-this'>
       <h2 className='catalog__title'>More like this</h2>
@@ -55,7 +55,7 @@ const MoviePage = () => {
         <p>© 2019 What to watch Ltd.</p>
       </div>
     </footer>
-  </div>;
-};
+  </div>
+);
 
 export default MoviePage;
