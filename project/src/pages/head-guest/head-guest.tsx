@@ -1,7 +1,7 @@
 const HeadGuest = () => (
   <section className='film-card'>
     <div className='film-card__bg'>
-      <img src={'img/bg-header.jpg'}/>
+      <img alt={''} src={'img/bg-header.jpg'}/>
     </div>
 
     <h1 className='visually-hidden'>WTW</h1>
