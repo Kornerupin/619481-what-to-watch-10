@@ -2,7 +2,8 @@ import {Film} from '../../types/film';
 import {Navigate, useParams} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import Logo from '../../components/logo/logo';
-import {useState} from 'react';
+import {ChangeEvent, useState} from 'react';
+import * as events from 'events';
 
 type AddReviewProps = {
   listData: Film[],
@@ -18,7 +19,7 @@ const AddReview = ({listData}: AddReviewProps) => {
     text: '',
   });
 
-  const filedInputHandler = (evt) => {
+  const filedInputHandler = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     const {name, value} = evt.target;
     setStateData({
       ...stateData,
