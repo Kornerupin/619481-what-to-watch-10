@@ -11,7 +11,7 @@ const Player = ({films}: PlayerProps) => {
 
   return (
     <div className='player'>
-      <video src={films[id].preview} className='player__video' poster={'img/player-poster.jpg'}></video>
+      <video src={films[id].video} className='player__video' poster={'img/player-poster.jpg'}></video>
 
       <button type='button' className='player__exit'>Exit</button>
 
