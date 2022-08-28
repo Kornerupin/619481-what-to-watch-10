@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-
-const title = 'The Grand Budapest Hotel';
-const genre = 'Drama';
-const year = 2014;
+import {Films} from './mocks/films';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -13,9 +10,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      title={title}
-      genre={genre}
-      year={year}
+      listData = {Films}
     />
   </React.StrictMode>,
 );

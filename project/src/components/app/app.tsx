@@ -6,16 +6,15 @@ import Error404 from '../../pages/error-404/error-404';
 import PrivateRoute from '../private-route/private-route';
 import MyList from '../../pages/my-list/my-list';
 import MoviePage from '../../pages/movie-page/movie-page';
-import MoviePageReviews from '../../pages/movie-page-reviews/movie-page-reviews';
 import Player from '../../pages/player/player';
+import {Film} from '../../types/film';
+import AddReview from '../../pages/add-review/add-review';
 
 type AppProps = {
-  title: string,
-  genre: string,
-  year: number,
+  listData: Film[],
 };
 
-const App = (PromoData: AppProps): JSX.Element => (
+const App = ({listData}: AppProps): JSX.Element => (
   <BrowserRouter>
     <Routes>
       <Route
@@ -24,7 +23,7 @@ const App = (PromoData: AppProps): JSX.Element => (
       />
       <Route
         path={AppRoute.Main}
-        element={<Main {...PromoData} />}
+        element={<Main listData={listData} />}
       />
       <Route
         path={AppRoute.SignIn}
@@ -34,9 +33,9 @@ const App = (PromoData: AppProps): JSX.Element => (
         path={AppRoute.MyList}
         element={
           <PrivateRoute
-            authStatus={AuthStatus.NoAuth}
+            authStatus={AuthStatus.Auth}
           >
-            <MyList />
+            <MyList listData={listData.filter((film) => film.isFavorite)} />
           </PrivateRoute>
         }
       />
@@ -46,11 +45,11 @@ const App = (PromoData: AppProps): JSX.Element => (
       />
       <Route
         path={AppRoute.AddReview}
-        element={<MoviePageReviews />}
+        element={<AddReview listData={listData} />}
       />
       <Route
         path={AppRoute.Player}
-        element={<Player />}
+        element={<Player films={listData} />}
       />
     </Routes>
   </BrowserRouter>

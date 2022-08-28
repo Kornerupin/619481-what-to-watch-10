@@ -12,3 +12,18 @@ export enum AuthStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export enum Genres {
+  Drama = 'Drama',
+  Action = 'Action',
+  Adventure = 'Adventure',
+  Animates = 'Animated',
+  Comedy = 'Comedy',
+  Fantasy = 'Fantasy',
+  Historical = 'Historical',
+  Horror = 'Horror',
+  Noir = 'Noir',
+  Science = 'Science',
+  Thriller = 'Thriller',
+  Western = 'Western',
+}
