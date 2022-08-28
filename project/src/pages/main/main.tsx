@@ -1,12 +1,12 @@
-import CardSmall from '../card-small/card-small';
+import {Film} from '../../types/film';
+import CardSmallList from '../../components/card-small-list/card-small-list';
+import Logo from '../../components/logo/logo';
 
 type MainProps = {
-  title: string,
-  genre: string,
-  year: number,
+  listData: Film[],
 };
 
-const Main = ({...PromoData}: MainProps): JSX.Element => (
+const Main = ({listData}: MainProps): JSX.Element => (
   <div>
     <section className='film-card'>
       <div className='film-card__bg'>
@@ -16,13 +16,7 @@ const Main = ({...PromoData}: MainProps): JSX.Element => (
       <h1 className='visually-hidden'>WTW</h1>
 
       <header className='page-header film-card__head'>
-        <div className='logo'>
-          <a href={'#'} className='logo__link'>
-            <span className='logo__letter logo__letter--1'>W</span>
-            <span className='logo__letter logo__letter--2'>T</span>
-            <span className='logo__letter logo__letter--3'>W</span>
-          </a>
-        </div>
+        <Logo isLight={false} />
 
         <ul className='user-block'>
           <li className='user-block__item'>
@@ -39,14 +33,14 @@ const Main = ({...PromoData}: MainProps): JSX.Element => (
       <div className='film-card__wrap'>
         <div className='film-card__info'>
           <div className='film-card__poster'>
-            <img src={'img/the-grand-budapest-hotel-poster.jpg'} alt='The Grand Budapest Hotel poster' width='218' height='327'/>
+            <img src={`img/${listData[0].poster}`} alt={`${listData[0].title} poster`} width='218' height='327'/>
           </div>
 
           <div className='film-card__desc'>
-            <h2 className='film-card__title'>{PromoData.title}</h2>
+            <h2 className='film-card__title'>{listData[0].title}</h2>
             <p className='film-card__meta'>
-              <span className='film-card__genre'>{PromoData.genre}</span>
-              <span className='film-card__year'>{PromoData.year}</span>
+              <span className='film-card__genre'>{listData[0].genre}</span>
+              <span className='film-card__year'>{listData[0].year}</span>
             </p>
 
             <div className='film-card__buttons'>
@@ -106,39 +100,7 @@ const Main = ({...PromoData}: MainProps): JSX.Element => (
           </li>
         </ul>
 
-        <div className='catalog__films-list'>
-
-          <CardSmall/>
-          <CardSmall/>
-          <CardSmall/>
-          <CardSmall/>
-
-          <CardSmall/>
-          <CardSmall/>
-          <CardSmall/>
-          <CardSmall/>
-
-          <CardSmall/>
-          <CardSmall/>
-          <CardSmall/>
-          <CardSmall/>
-
-          <CardSmall/>
-          <CardSmall/>
-          <CardSmall/>
-          <CardSmall/>
-
-          <CardSmall/>
-          <CardSmall/>
-          <CardSmall/>
-          <CardSmall/>
-
-          <CardSmall/>
-          <CardSmall/>
-          <CardSmall/>
-          <CardSmall/>
-
-        </div>
+        <CardSmallList films={listData} />
 
         <div className='catalog__more'>
           <button className='catalog__button' type='button'>Show more</button>
@@ -146,13 +108,7 @@ const Main = ({...PromoData}: MainProps): JSX.Element => (
       </section>
 
       <footer className='page-footer'>
-        <div className='logo'>
-          <a className='logo__link logo__link--light'>
-            <span className='logo__letter logo__letter--1'>W</span>
-            <span className='logo__letter logo__letter--2'>T</span>
-            <span className='logo__letter logo__letter--3'>W</span>
-          </a>
-        </div>
+        <Logo isLight />
 
         <div className='copyright'>
           <p>© 2019 What to watch Ltd.</p>
