@@ -1,9 +1,9 @@
-import {Film} from '../../types/film';
+import {FilmType} from '../../types/film-type';
 import CardSmallList from '../../components/card-small-list/card-small-list';
 import Logo from '../../components/logo/logo';
 
 type MainProps = {
-  listData: Film[],
+  listData: FilmType[],
 };
 
 const Main = ({listData}: MainProps): JSX.Element => (

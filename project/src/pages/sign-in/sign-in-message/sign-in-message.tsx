@@ -13,7 +13,7 @@ const SignInMessage = () => (
     </header>
 
     <div className='sign-in user-page__content'>
-      <form action='#' className='sign-in__form'>
+      <form action='src/pages/sign-in/sign-in-message/sign-in-message#' className='sign-in__form'>
         <div className='sign-in__message'>
           <p>We can’t recognize this email <br /> and password combination. Please try again.</p>
         </div>

@@ -1,11 +1,11 @@
-import {Film} from '../../types/film';
+import {FilmType} from '../../types/film-type';
 import {Navigate, useParams} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import Logo from '../../components/logo/logo';
 import {ChangeEvent, useState} from 'react';
 
 type AddReviewProps = {
-  listData: Film[],
+  listData: FilmType[],
 };
 
 const AddReview = ({listData}: AddReviewProps) => {
