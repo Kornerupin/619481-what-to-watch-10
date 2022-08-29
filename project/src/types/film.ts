@@ -6,5 +6,6 @@ export type Film = {
   year: number,
   image: string,
   poster: string,
+  video: string,
   preview: string,
 }
