@@ -1,15 +1,15 @@
-import {Film} from '../../types/film';
-import VideoPlayer from '../../components/video-player/video-player';
+import {FilmType} from '../../../types/film-type';
+import VideoPlayer from '../../video-player/video-player';
 import {useState} from 'react';
 
 type CardSmallProps = {
-  cardData: Film,
+  cardData: FilmType,
   startVideoDelay?: number,
 };
 
 const CardSmall = ({cardData, startVideoDelay = 1000}: CardSmallProps): JSX.Element => {
   const [isVideo, setIsVideo] = useState(false);
-  let timerStart: any = null;
+  let timerStart: ReturnType<typeof setTimeout>;
 
   const setTimerToVideo = () => {
     if (!isVideo) {

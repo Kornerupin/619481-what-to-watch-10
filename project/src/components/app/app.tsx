@@ -7,52 +7,56 @@ import PrivateRoute from '../private-route/private-route';
 import MyList from '../../pages/my-list/my-list';
 import MoviePage from '../../pages/movie-page/movie-page';
 import Player from '../../pages/player/player';
-import {Film} from '../../types/film';
+import {FilmType} from '../../types/film-type';
 import AddReview from '../../pages/add-review/add-review';
 
 type AppProps = {
-  listData: Film[],
+  listData: FilmType[],
 };
 
-const App = ({listData}: AppProps): JSX.Element => (
-  <BrowserRouter>
-    <Routes>
-      <Route
-        path={'*'}
-        element={<Error404 />}
-      />
-      <Route
-        path={AppRoute.Main}
-        element={<Main listData={listData} />}
-      />
-      <Route
-        path={AppRoute.SignIn}
-        element={<SignIn />}
-      />
-      <Route
-        path={AppRoute.MyList}
-        element={
-          <PrivateRoute
-            authStatus={AuthStatus.Auth}
-          >
-            <MyList listData={listData.filter((film) => film.isFavorite)} />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path={AppRoute.Film}
-        element={<MoviePage />}
-      />
-      <Route
-        path={AppRoute.AddReview}
-        element={<AddReview listData={listData} />}
-      />
-      <Route
-        path={AppRoute.Player}
-        element={<Player films={listData} />}
-      />
-    </Routes>
-  </BrowserRouter>
-);
+const App = ({listData}: AppProps): JSX.Element => {
+  const favoriteListData = listData.filter((film) => film.isFavorite);
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path={'*'}
+          element={<Error404/>}
+        />
+        <Route
+          path={AppRoute.Main}
+          element={<Main listData={listData}/>}
+        />
+        <Route
+          path={AppRoute.SignIn}
+          element={<SignIn/>}
+        />
+        <Route
+          path={AppRoute.MyList}
+          element={
+            <PrivateRoute
+              authStatus={AuthStatus.Auth}
+            >
+              <MyList listData={favoriteListData}/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={AppRoute.Film}
+          element={<MoviePage films={listData} favoriteCount={favoriteListData.length} />}
+        />
+        <Route
+          path={AppRoute.AddReview}
+          element={<AddReview listData={listData}/>}
+        />
+        <Route
+          path={AppRoute.Player}
+          element={<Player films={listData}/>}
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default App;

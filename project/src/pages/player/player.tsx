@@ -1,8 +1,8 @@
-import {Film} from '../../types/film';
+import {FilmType} from '../../types/film-type';
 import {useParams} from 'react-router-dom';
 
 type PlayerProps = {
-  films: Film[],
+  films: FilmType[],
 }
 
 const Player = ({films}: PlayerProps) => {

@@ -13,7 +13,7 @@ const SignInError = () => (
     </header>
 
     <div className='sign-in user-page__content'>
-      <form action='#' className='sign-in__form'>
+      <form action='src/pages/sign-in/sign-in-error/sign-in-error#' className='sign-in__form'>
         <div className='sign-in__message'>
           <p>Please enter a valid email address</p>
         </div>

@@ -1,7 +1,7 @@
-import {Film} from '../../types/film';
+import {FilmType} from '../../types/film-type';
 
 type VideoPlayerProps = {
-  film: Film,
+  film: FilmType,
   isAutoPlay?: boolean,
   isMuted?: boolean,
 };

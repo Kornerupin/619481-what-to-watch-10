@@ -1,8 +1,8 @@
-import {Film} from '../../types/film';
-import CardSmall from '../../pages/card-small/card-small';
+import {FilmType} from '../../types/film-type';
+import CardSmall from './card-small/card-small';
 
 type CardSmallListProps = {
-  films: Film[],
+  films: FilmType[],
 };
 
 const CardSmallList = ({films}: CardSmallListProps):JSX.Element => {

@@ -1,9 +1,9 @@
-import {Film} from '../../types/film';
+import {FilmType} from '../../types/film-type';
 import CardSmallList from '../../components/card-small-list/card-small-list';
 import Logo from '../../components/logo/logo';
 
 type MyListProps = {
-  listData: Film[],
+  listData: FilmType[],
 };
 
 const MyList = ({listData}: MyListProps) => (

@@ -1,0 +1,15 @@
+export type FilmType = {
+  id: number,
+  isFavorite: boolean,
+  title: string,
+  genre: string,
+  year: number,
+  image: string,
+  poster: string,
+  video: string,
+  preview: string,
+  description?: string,
+  director?: string,
+  starring?: string[],
+  runTime?: number,
+}
