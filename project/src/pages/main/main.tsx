@@ -41,14 +41,14 @@ const Main = ({filmsData, favoriteCount}: MainProps): JSX.Element => {
         <div className='film-card__wrap'>
           <div className='film-card__info'>
             <div className='film-card__poster'>
-              <img src={`img/${filmsData[0].poster}`} alt={`${filmsData[0].title} poster`} width='218' height='327'/>
+              <img src={`${filmsData[0].posterImage}`} alt={`${filmsData[0].name} poster`} width='218' height='327'/>
             </div>
 
             <div className='film-card__desc'>
-              <h2 className='film-card__title'>{filmsData[0].title}</h2>
+              <h2 className='film-card__title'>{filmsData[0].name}</h2>
               <p className='film-card__meta'>
                 <span className='film-card__genre'>{filmsData[0].genre}</span>
-                <span className='film-card__year'>{filmsData[0].year}</span>
+                <span className='film-card__year'>{filmsData[0].released}</span>
               </p>
 
               <div className='film-card__buttons'>

@@ -34,7 +34,7 @@ const AddReview = ({filmsData}: AddReviewProps) => {
     <section className='film-card film-card--full'>
       <div className='film-card__header'>
         <div className='film-card__bg'>
-          <img src={`img/${film.image}`} alt={film.title}/>
+          <img src={`${film.backgroundImage}`} alt={film.name}/>
         </div>
 
         <h1 className='visually-hidden'>WTW</h1>
@@ -45,7 +45,7 @@ const AddReview = ({filmsData}: AddReviewProps) => {
           <nav className='breadcrumbs'>
             <ul className='breadcrumbs__list'>
               <li className='breadcrumbs__item'>
-                <a href={'film-page.html'} className='breadcrumbs__link'>{film.title}</a>
+                <a href={'film-page.html'} className='breadcrumbs__link'>{film.name}</a>
               </li>
               <li className='breadcrumbs__item'>
                 <a className='breadcrumbs__link'>Add review</a>
@@ -66,7 +66,7 @@ const AddReview = ({filmsData}: AddReviewProps) => {
         </header>
 
         <div className='film-card__poster film-card__poster--small'>
-          <img src={`img/${film.poster || film.image}`} alt={`${film.title} poster`} width='218' height='327'/>
+          <img src={`${film.posterImage || film.previewImage}`} alt={`${film.name} poster`} width='218' height='327'/>
         </div>
       </div>
 

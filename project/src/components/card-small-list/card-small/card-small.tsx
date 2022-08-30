@@ -37,11 +37,11 @@ const CardSmall = ({cardData, startVideoDelay = 1000}: CardSmallProps): JSX.Elem
         {
           isVideo
             ? <VideoPlayer film={cardData} isMuted/>
-            : <img src={`img/${cardData.image}`} alt={cardData.title} width="280" height="175"/>
+            : <img src={`${cardData.previewImage}`} alt={cardData.name} width="280" height="175"/>
         }
       </div>
       <h3 className="small-film-card__title">
-        <Link to={AppRoute.Film.replace(':id', `${cardData.id}`)} className="small-film-card__link">{cardData.title}</Link>
+        <Link to={AppRoute.Film.replace(':id', `${cardData.id}`)} className="small-film-card__link">{cardData.name}</Link>
       </h3>
     </article>
   );

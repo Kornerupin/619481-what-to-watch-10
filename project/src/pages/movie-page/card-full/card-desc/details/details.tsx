@@ -34,7 +34,7 @@ const Details = ({filmData}: DetailsProps) => {
         </p>
         <p className='film-card__details-item'>
           <strong className='film-card__details-name'>Released</strong>
-          <span className='film-card__details-value'>{filmData.year || 'No data'}</span>
+          <span className='film-card__details-value'>{filmData.released || 'No data'}</span>
         </p>
       </div>
     </div>

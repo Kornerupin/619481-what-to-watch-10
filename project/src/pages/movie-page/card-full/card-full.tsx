@@ -13,7 +13,7 @@ const CardFull = ({film, favoriteCount}: CardFullProps) => (
   <section className='film-card film-card--full'>
     <div className='film-card__hero'>
       <div className='film-card__bg'>
-        <img src={`img/${film.image || film.poster}`} alt={film.title} />
+        <img src={`${film.backgroundImage || film.previewImage || film.posterImage}`} alt={film.name} />
       </div>
 
       <h1 className='visually-hidden'>WTW</h1>
@@ -35,10 +35,10 @@ const CardFull = ({film, favoriteCount}: CardFullProps) => (
 
       <div className='film-card__wrap'>
         <div className='film-card__desc'>
-          <h2 className='film-card__title'>{film.title}</h2>
+          <h2 className='film-card__title'>{film.name}</h2>
           <p className='film-card__meta'>
             <span className='film-card__genre'>{film.genre}</span>
-            <span className='film-card__year'>{film.year}</span>
+            <span className='film-card__year'>{film.released}</span>
           </p>
 
           <div className='film-card__buttons'>
@@ -64,7 +64,7 @@ const CardFull = ({film, favoriteCount}: CardFullProps) => (
     <div className='film-card__wrap film-card__translate-top'>
       <div className='film-card__info'>
         <div className='film-card__poster film-card__poster--big'>
-          <img src={`img/${film.poster || film.image}`} alt={`${film.title} poster`} width='218' height='327'/>
+          <img src={`${film.posterImage || film.previewImage}`} alt={`${film.name} poster`} width='218' height='327'/>
         </div>
 
         <CardDesc filmId={film.id} />

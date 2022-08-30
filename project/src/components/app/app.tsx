@@ -8,11 +8,19 @@ import MyList from '../../pages/my-list/my-list';
 import MoviePage from '../../pages/movie-page/movie-page';
 import Player from '../../pages/player/player';
 import AddReview from '../../pages/add-review/add-review';
-import {Films} from '../../mocks/films';
 import {setGenre} from '../../store/action';
+import {useAppSelector} from '../../hooks';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 const App = (): JSX.Element => {
-  const favoriteListData = Films.filter((film) => film.isFavorite);
+  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
+  const filmsAll = useAppSelector((state) => state.filmsAll);
+
+  if (isDataLoaded) {
+    return <LoadingScreen />;
+  }
+
+  const favoriteListData = filmsAll.filter((film) => film.isFavorite);
   setGenre('All genres');
 
   return (
@@ -24,7 +32,7 @@ const App = (): JSX.Element => {
         />
         <Route
           path={AppRoute.Main}
-          element={<Main filmsData={Films} favoriteCount={favoriteListData.length} />}
+          element={<Main filmsData={filmsAll} favoriteCount={favoriteListData.length} />}
         />
         <Route
           path={AppRoute.SignIn}
@@ -42,15 +50,15 @@ const App = (): JSX.Element => {
         />
         <Route
           path={AppRoute.Film}
-          element={<MoviePage films={Films} favoriteCount={favoriteListData.length} />}
+          element={<MoviePage films={filmsAll} favoriteCount={favoriteListData.length} />}
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReview filmsData={Films}/>}
+          element={<AddReview filmsData={filmsAll}/>}
         />
         <Route
           path={AppRoute.Player}
-          element={<Player films={Films}/>}
+          element={<Player films={filmsAll}/>}
         />
       </Routes>
     </BrowserRouter>
