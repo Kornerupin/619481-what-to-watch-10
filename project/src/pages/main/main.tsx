@@ -3,6 +3,7 @@ import CardSmallList from '../../components/card-small-list/card-small-list';
 import Logo from '../../components/logo/logo';
 import GenresList from './genres-list/genres-list';
 import {useAppSelector} from '../../hooks';
+import ShowMore from './show-more/show-more';
 
 type MainProps = {
   filmsData: FilmType[],
@@ -78,9 +79,7 @@ const Main = ({filmsData, favoriteCount}: MainProps): JSX.Element => {
 
           <CardSmallList films={filterFilmsData}/>
 
-          <div className='catalog__more'>
-            <button className='catalog__button' type='button'>Show more</button>
-          </div>
+          <ShowMore />
         </section>
 
         <footer className='page-footer'>

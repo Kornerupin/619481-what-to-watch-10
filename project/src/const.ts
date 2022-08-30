@@ -29,3 +29,5 @@ export enum Genres {
   Thriller = 'Thriller',
   Western = 'Western',
 }
+
+export const ShowMoreCount = 8;
