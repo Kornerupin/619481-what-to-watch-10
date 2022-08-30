@@ -1,13 +1,21 @@
 import {FilmType} from '../../types/film-type';
 import CardSmall from './card-small/card-small';
+import {useAppSelector} from '../../hooks';
 
 type CardSmallListProps = {
   films: FilmType[],
 };
 
 const CardSmallList = ({films}: CardSmallListProps):JSX.Element => {
+  const visibleFilmsMax = useAppSelector((state) => state.visibleFilmsMax);
+
   const filmsList = films.map(
-    (film) => (<CardSmall key={film.id} cardData = {film} />)
+    (film, i) => {
+      if (visibleFilmsMax < i + 1) {
+        return false;
+      }
+      return <CardSmall key={film.id} cardData = {film} />;
+    }
   );
 
   return (
