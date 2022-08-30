@@ -1,6 +1,6 @@
 import Main from '../../pages/main/main';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {AppRoute, AuthStatus} from '../../const';
+import {AppRoute} from '../../const';
 import SignIn from '../../pages/sign-in/sign-in';
 import Error404 from '../../pages/error-404/error-404';
 import PrivateRoute from '../private-route/private-route';
@@ -41,9 +41,7 @@ const App = (): JSX.Element => {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute
-              authStatus={AuthStatus.Auth}
-            >
+            <PrivateRoute>
               <MyList filmsData={favoriteListData}/>
             </PrivateRoute>
           }
