@@ -5,13 +5,13 @@ import Logo from '../../components/logo/logo';
 import {ChangeEvent, useState} from 'react';
 
 type AddReviewProps = {
-  listData: FilmType[],
+  filmsData: FilmType[],
 };
 
-const AddReview = ({listData}: AddReviewProps) => {
+const AddReview = ({filmsData}: AddReviewProps) => {
   const id:number = parseInt(useParams().id || '0', 10);
 
-  const film = listData[id];
+  const film = filmsData[id];
 
   const [stateData, setStateData] = useState({
     rating: '5',

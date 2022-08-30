@@ -15,6 +15,7 @@ export enum AuthStatus {
 }
 
 export enum Genres {
+  All = 'All',
   Drama = 'Drama',
   Action = 'Action',
   Adventure = 'Adventure',

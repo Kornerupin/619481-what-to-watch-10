@@ -3,15 +3,15 @@ import CardSmallList from '../../components/card-small-list/card-small-list';
 import Logo from '../../components/logo/logo';
 
 type MyListProps = {
-  listData: FilmType[],
+  filmsData: FilmType[],
 };
 
-const MyList = ({listData}: MyListProps) => (
+const MyList = ({filmsData}: MyListProps) => (
   <div className='user-page'>
     <header className='page-header user-page__head'>
       <Logo isLight={false} />
 
-      <h1 className='page-title user-page__title'>My list <span className='user-page__film-count'>{listData.length}</span></h1>
+      <h1 className='page-title user-page__title'>My list <span className='user-page__film-count'>{filmsData.length}</span></h1>
       <ul className='user-block'>
         <li className='user-block__item'>
           <div className='user-block__avatar'>
@@ -27,7 +27,7 @@ const MyList = ({listData}: MyListProps) => (
     <section className='catalog'>
       <h2 className='catalog__title visually-hidden'>Catalog</h2>
 
-      <CardSmallList films={listData} />
+      <CardSmallList films={filmsData} />
     </section>
 
     <footer className='page-footer'>
