@@ -3,10 +3,10 @@ import {useState} from 'react';
 import Overview from './overview/overview';
 import {Reviews} from '../../../../mocks/reviews';
 import {FilmType} from '../../../../types/film-type';
-import {Films} from '../../../../mocks/films';
 import {Navigate} from 'react-router-dom';
 import {AppRoute} from '../../../../const';
 import Details from './details/details';
+import {useAppSelector} from '../../../../hooks';
 
 type CardDescProps = {
   filmId: number,
@@ -14,8 +14,9 @@ type CardDescProps = {
 
 const CardDesc = ({filmId}: CardDescProps) => {
   const [activeTab, setActiveTab] = useState(0);
+  const filmsAll = useAppSelector((state) => state.filmsAll);
 
-  const filmData: FilmType | undefined = Films.find((current) => current.id === filmId);
+  const filmData: FilmType | undefined = filmsAll.find((current) => current.id === filmId);
   if (!filmData) {
     return <Navigate to={AppRoute.Error404} />;
   }

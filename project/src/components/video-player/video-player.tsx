@@ -7,8 +7,8 @@ type VideoPlayerProps = {
 };
 
 const VideoPlayer = ({film, isAutoPlay = true, isMuted = false}: VideoPlayerProps) => (
-  <video height={'100%'} width={'100%'} controls={false} poster={`img/${film.poster || film.image}`} autoPlay={isAutoPlay} muted={isMuted} >
-    <source src={film.preview} />
+  <video height={'100%'} width={'100%'} controls={false} poster={`${film.posterImage || film.previewImage}`} autoPlay={isAutoPlay} muted={isMuted} >
+    <source src={film.previewImage} />
     Тег video не поддерживается вашим браузером.
   </video>
 );

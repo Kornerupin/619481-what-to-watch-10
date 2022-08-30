@@ -1,21 +1,24 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {filterFilms, setGenre, showMore} from './action';
-import {Films} from '../mocks/films';
+import {filterFilms, loadFilms, setDataLoadedStatus, setGenre, showMore} from './action';
 import {FilmType} from '../types/film-type';
 import {ShowMoreCount} from '../const';
 
 type initialStateTypes = {
   genre: string,
   films: FilmType[],
+  filmsAll: FilmType[],
   visibleFilmsMax: number,
   isVisibleLimit: boolean,
+  isDataLoaded: boolean,
 }
 
 const initialState = <initialStateTypes> {
   genre: 'All genres',
   films: [],
+  filmsAll: [],
   visibleFilmsMax: ShowMoreCount,
   isVisibleLimit: false,
+  isDataLoaded: true,
 };
 
 const showMoreFunc = (state: initialStateTypes) => {
@@ -29,10 +32,10 @@ const showMoreFunc = (state: initialStateTypes) => {
 
 const filterFilmsFunc = (state: initialStateTypes) => {
   if (state.genre === 'All genres') {
-    state.films = Films;
+    state.films = state.filmsAll;
   }
   else {
-    state.films = Films.filter((current) => current.genre === state.genre);
+    state.films = state.filmsAll.filter((current) => current.genre === state.genre);
   }
 };
 
@@ -50,6 +53,12 @@ const reducer = createReducer(initialState, (builder) => {
       state.isVisibleLimit = false;
       filterFilmsFunc(state);
       showMoreFunc(state);
+    })
+    .addCase(loadFilms, (state, action) => {
+      state.filmsAll = action.payload;
+    })
+    .addCase(setDataLoadedStatus, (state, action) => {
+      state.isDataLoaded = action.payload;
     });
 });
 

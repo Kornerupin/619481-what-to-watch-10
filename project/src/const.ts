@@ -30,4 +30,10 @@ export enum Genres {
   Western = 'Western',
 }
 
+export enum APIRoute {
+  Films = '/films',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export const ShowMoreCount = 8;
