@@ -37,3 +37,5 @@ export enum APIRoute {
 }
 
 export const ShowMoreCount = 8;
+
+export const TimeoutShowError = 5000;

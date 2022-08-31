@@ -1,7 +1,8 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {filterFilms, loadFilms, setDataLoadedStatus, setGenre, showMore} from './action';
+import {filterFilms, loadFilms, requireAuth, setDataLoadedStatus, setError, setGenre, showMore} from './action';
 import {FilmType} from '../types/film-type';
-import {ShowMoreCount} from '../const';
+import {AuthStatus, ShowMoreCount} from '../const';
+import {UserDataType} from '../types/user-data-type';
 
 type initialStateTypes = {
   genre: string,
@@ -10,6 +11,9 @@ type initialStateTypes = {
   visibleFilmsMax: number,
   isVisibleLimit: boolean,
   isDataLoaded: boolean,
+  authStatus: AuthStatus,
+  error: string | null,
+  userData: UserDataType | null,
 }
 
 const initialState = <initialStateTypes> {
@@ -19,6 +23,9 @@ const initialState = <initialStateTypes> {
   visibleFilmsMax: ShowMoreCount,
   isVisibleLimit: false,
   isDataLoaded: true,
+  authStatus: AuthStatus.Unknown,
+  error: null,
+  userData: null,
 };
 
 const showMoreFunc = (state: initialStateTypes) => {
@@ -59,6 +66,12 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setDataLoadedStatus, (state, action) => {
       state.isDataLoaded = action.payload;
+    })
+    .addCase(requireAuth, (state, action) => {
+      state.authStatus = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     });
 });
 
