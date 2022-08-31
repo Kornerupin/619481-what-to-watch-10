@@ -6,7 +6,7 @@ import {
   loadFilms,
   loadReviews,
   loadSimilarFilms,
-  requireAuth, sendReview,
+  requireAuth, saveUserData, sendReview,
   setDataLoadedStatus,
   setError
 } from './action';
@@ -110,8 +110,9 @@ export const loginAction = createAsyncThunk<void, AuthDataType, {
 }>(
   'user/login',
   async ({login: email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<UserDataType>(APIRoute.Login, {email, password});
+    const {data: {token, avatarUrl, id, name}} = await api.post<UserDataType>(APIRoute.Login, {email, password});
     saveToken(token);
+    saveUserData({id, name, email, avatarUrl, token});
     dispatch(requireAuth(AuthStatus.Auth));
   },
 );

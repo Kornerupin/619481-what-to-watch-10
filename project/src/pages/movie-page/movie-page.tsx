@@ -19,10 +19,10 @@ const MoviePage = ({favoriteCount}: MoviePageProps) => {
   store.dispatch(fetchActiveFilmAction(id));
   store.dispatch(fetchReviewsAction(id));
   store.dispatch(fetchSimilarFilmsAction(id));
-  const currentFilmData = useAppSelector((state) => state.activeFilm);
-  const currentFilmSimilar = useAppSelector((state) => state.activeFilmSimilar);
+  const currentFilmData = useAppSelector((state) => state.films.activeFilm);
+  const currentFilmSimilar = useAppSelector((state) => state.films.activeFilmSimilar);
 
-  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
+  const isDataLoaded = useAppSelector((state) => state.films.isDataLoaded);
 
   if (isDataLoaded || !currentFilmData) {
     return <LoadingScreen />;

@@ -1,22 +1,20 @@
-import {createReducer} from '@reduxjs/toolkit';
+import {combineReducers, createReducer} from '@reduxjs/toolkit';
 import {
   filterFilms,
   loadActiveFilm,
   loadFilms,
   loadReviews,
   loadSimilarFilms,
-  requireAuth,
   setDataLoadedStatus,
-  setError,
   setGenre,
   showMore
 } from './action';
 import {FilmType} from '../types/film-type';
-import {AuthStatus, ShowMoreCount} from '../const';
-import {UserDataType} from '../types/user-data-type';
+import {ShowMoreCount} from '../const';
 import {ReviewType} from '../types/review-type';
+import reducerAuth from './reducer-auth';
 
-type initialStateTypes = {
+interface initialStateTypes {
   genre: string,
   films: FilmType[],
   filmsAll: FilmType[],
@@ -26,9 +24,6 @@ type initialStateTypes = {
   visibleFilmsMax: number,
   isVisibleLimit: boolean,
   isDataLoaded: boolean,
-  authStatus: AuthStatus,
-  error: string | null,
-  userData: UserDataType | null,
 }
 
 const initialState = <initialStateTypes> {
@@ -41,9 +36,6 @@ const initialState = <initialStateTypes> {
   visibleFilmsMax: ShowMoreCount,
   isVisibleLimit: false,
   isDataLoaded: true,
-  authStatus: AuthStatus.Unknown,
-  error: null,
-  userData: null,
 };
 
 const showMoreFunc = (state: initialStateTypes) => {
@@ -64,7 +56,7 @@ const filterFilmsFunc = (state: initialStateTypes) => {
   }
 };
 
-const reducer = createReducer(initialState, (builder) => {
+const reducerFilms = createReducer(initialState, (builder) => {
   builder
     .addCase(filterFilms, (state) => {
       filterFilmsFunc(state);
@@ -93,13 +85,14 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setDataLoadedStatus, (state, action) => {
       state.isDataLoaded = action.payload;
-    })
-    .addCase(requireAuth, (state, action) => {
-      state.authStatus = action.payload;
-    })
-    .addCase(setError, (state, action) => {
-      state.error = action.payload;
     });
 });
+
+const reducer = combineReducers(
+  {
+    films: reducerFilms,
+    auth: reducerAuth,
+  }
+);
 
 export {reducer};

@@ -6,8 +6,8 @@ import {Navigate} from 'react-router-dom';
 import {AppRoute} from '../../const';
 
 const SignIn = () => {
-  const error = useAppSelector((state) => state.error);
-  const userData = useAppSelector((state) => state.userData);
+  const error = useAppSelector((state) => state.auth.error);
+  const userData = useAppSelector((state) => state.auth.userData);
 
   if (userData !== null) {
     return <Navigate to={AppRoute.Main} />;

@@ -1,13 +1,14 @@
 import {FilmType} from '../../types/film-type';
 import CardSmall from './card-small/card-small';
 import {useAppSelector} from '../../hooks';
+import {memo} from 'react';
 
 type CardSmallListProps = {
   films: FilmType[],
 };
 
 const CardSmallList = ({films}: CardSmallListProps):JSX.Element => {
-  const visibleFilmsMax = useAppSelector((state) => state.visibleFilmsMax);
+  const visibleFilmsMax = useAppSelector((state) => state.films.visibleFilmsMax);
 
   const filmsList = films.map(
     (film, i) => {
@@ -25,4 +26,4 @@ const CardSmallList = ({films}: CardSmallListProps):JSX.Element => {
   );
 };
 
-export default CardSmallList;
+export default memo(CardSmallList);

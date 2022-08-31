@@ -12,8 +12,8 @@ const AddReview = () => {
 
   store.dispatch(fetchActiveFilmAction(id));
 
-  const film = useAppSelector((state) => state.activeFilm);
-  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
+  const film = useAppSelector((state) => state.films.activeFilm);
+  const isDataLoaded = useAppSelector((state) => state.films.isDataLoaded);
 
   const [stateData, setStateData] = useState({
     rating: '',

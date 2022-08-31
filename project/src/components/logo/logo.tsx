@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
+import {memo} from 'react';
 
 type LogoProps = {
   isLight?: boolean,
@@ -15,4 +16,4 @@ const Logo = ({isLight = false}: LogoProps) => (
   </div>
 );
 
-export default Logo;
+export default memo(Logo);

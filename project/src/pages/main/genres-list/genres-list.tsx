@@ -1,6 +1,7 @@
 import {FilmType} from '../../../types/film-type';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {setGenre} from '../../../store/action';
+import {memo} from 'react';
 
 type GenresListProps = {
   filmsData: FilmType[],
@@ -15,7 +16,7 @@ const GenresList = ({filmsData}: GenresListProps) => {
   });
 
   const dispatch = useAppDispatch();
-  const activeGenre = useAppSelector((state) => state.genre);
+  const activeGenre = useAppSelector((state) => state.films.genre);
 
   return (
     <ul className='catalog__genres-list'>
@@ -28,4 +29,4 @@ const GenresList = ({filmsData}: GenresListProps) => {
   );
 };
 
-export default GenresList;
+export default memo(GenresList);

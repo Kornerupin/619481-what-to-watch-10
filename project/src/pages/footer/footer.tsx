@@ -1,4 +1,5 @@
 import Logo from '../../components/logo/logo';
+import {memo} from 'react';
 
 const Footer = () => (
   <footer className='page-footer'>
@@ -10,4 +11,4 @@ const Footer = () => (
   </footer>
 );
 
-export default Footer;
+export default memo(Footer);

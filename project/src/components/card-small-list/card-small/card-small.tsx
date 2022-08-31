@@ -1,6 +1,6 @@
 import {FilmType} from '../../../types/film-type';
 import VideoPlayer from '../../video-player/video-player';
-import {useState} from 'react';
+import {memo, useState} from 'react';
 import {AppRoute} from '../../../const';
 import {Link} from 'react-router-dom';
 
@@ -47,4 +47,4 @@ const CardSmall = ({cardData, startVideoDelay = 1000}: CardSmallProps): JSX.Elem
   );
 };
 
-export default CardSmall;
+export default memo(CardSmall);

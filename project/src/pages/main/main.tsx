@@ -12,7 +12,7 @@ type MainProps = {
 };
 
 const Main = ({filmsData, favoriteCount}: MainProps): JSX.Element => {
-  const activeGenre = useAppSelector((state) => state.genre);
+  const activeGenre = useAppSelector((state) => state.films.genre);
   const filterFilmsData = filmsData.filter((current) => current.genre === activeGenre || activeGenre === 'All genres');
 
   return (

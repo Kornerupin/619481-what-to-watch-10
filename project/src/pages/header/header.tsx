@@ -2,9 +2,10 @@ import Logo from '../../components/logo/logo';
 import {useAppSelector} from '../../hooks';
 import {AppRoute, AuthStatus} from '../../const';
 import {Link} from 'react-router-dom';
+import {memo} from 'react';
 
 const Header = () => {
-  const authStatus = useAppSelector((state) => state.authStatus);
+  const authStatus = useAppSelector((state) => state.auth.authStatus);
 
   return (
     <header className='page-header film-card__head'>
@@ -35,4 +36,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

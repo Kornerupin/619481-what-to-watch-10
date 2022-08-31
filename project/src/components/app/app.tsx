@@ -13,8 +13,8 @@ import {useAppSelector} from '../../hooks';
 import LoadingScreen from '../loading-screen/loading-screen';
 
 const App = (): JSX.Element => {
-  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
-  const filmsAll = useAppSelector((state) => state.filmsAll);
+  const isDataLoaded = useAppSelector((state) => state.films.isDataLoaded);
+  const filmsAll = useAppSelector((state) => state.films.filmsAll);
 
   if (isDataLoaded) {
     return <LoadingScreen />;

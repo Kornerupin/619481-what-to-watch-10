@@ -1,8 +1,9 @@
 import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {showMore} from '../../../store/action';
+import {memo} from 'react';
 
 const ShowMore = () => {
-  const isVisibleLimit = useAppSelector((state) => state.isVisibleLimit);
+  const isVisibleLimit = useAppSelector((state) => state.films.isVisibleLimit);
   const dispatch = useAppDispatch();
 
   if (isVisibleLimit) {
@@ -16,4 +17,4 @@ const ShowMore = () => {
   );
 };
 
-export default ShowMore;
+export default memo(ShowMore);

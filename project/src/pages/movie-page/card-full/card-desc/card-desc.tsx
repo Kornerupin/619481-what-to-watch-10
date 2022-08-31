@@ -14,9 +14,9 @@ type CardDescProps = {
 const CardDesc = ({filmId}: CardDescProps) => {
   const [activeTab, setActiveTab] = useState(0);
 
-  const filmData = useAppSelector((state) => state.activeFilm);
-  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
-  const reviewData = useAppSelector((state) => state.activeFilmReviews) || [];
+  const filmData = useAppSelector((state) => state.films.activeFilm);
+  const isDataLoaded = useAppSelector((state) => state.films.isDataLoaded);
+  const reviewData = useAppSelector((state) => state.films.activeFilmReviews) || [];
 
   if (!filmData) {
     return <Navigate to={AppRoute.Error404} />;
