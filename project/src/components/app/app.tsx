@@ -48,11 +48,15 @@ const App = (): JSX.Element => {
         />
         <Route
           path={AppRoute.Film}
-          element={<MoviePage films={filmsAll} favoriteCount={favoriteListData.length} />}
+          element={<MoviePage favoriteCount={favoriteListData.length} />}
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReview filmsData={filmsAll}/>}
+          element={
+            <PrivateRoute>
+              <AddReview />
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.Player}

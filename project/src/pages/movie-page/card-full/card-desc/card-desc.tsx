@@ -1,12 +1,11 @@
 import ReviewList from './review-list/review-list';
 import {useState} from 'react';
 import Overview from './overview/overview';
-import {Reviews} from '../../../../mocks/reviews';
-import {FilmType} from '../../../../types/film-type';
 import {Navigate} from 'react-router-dom';
 import {AppRoute} from '../../../../const';
 import Details from './details/details';
 import {useAppSelector} from '../../../../hooks';
+import LoadingScreen from '../../../../components/loading-screen/loading-screen';
 
 type CardDescProps = {
   filmId: number,
@@ -14,15 +13,21 @@ type CardDescProps = {
 
 const CardDesc = ({filmId}: CardDescProps) => {
   const [activeTab, setActiveTab] = useState(0);
-  const filmsAll = useAppSelector((state) => state.filmsAll);
 
-  const filmData: FilmType | undefined = filmsAll.find((current) => current.id === filmId);
+  const filmData = useAppSelector((state) => state.activeFilm);
+  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
+  const reviewData = useAppSelector((state) => state.activeFilmReviews) || [];
+
   if (!filmData) {
     return <Navigate to={AppRoute.Error404} />;
   }
 
-  const reviewData = Reviews.filter((current) => current.filmId === filmId);
-  const reviewCount: number = reviewData.length;
+
+  if (isDataLoaded || !filmData) {
+    return <LoadingScreen />;
+  }
+
+  const reviewCount = reviewData.length;
   let reviewRatingTotal = 0;
   reviewData.forEach((current) => (reviewRatingTotal += current.rating));
   reviewRatingTotal = parseFloat((reviewRatingTotal / reviewCount).toFixed(1));
