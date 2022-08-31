@@ -1,19 +1,32 @@
-import Logo from '../../components/logo/logo';
 import CardFull from './card-full/card-full';
 import {Navigate, useParams} from 'react-router-dom';
-import {FilmType} from '../../types/film-type';
 import CardSmallList from '../../components/card-small-list/card-small-list';
 import {AppRoute} from '../../const';
 import {Fragment} from 'react';
+import {useAppSelector} from '../../hooks';
+import LoadingScreen from '../../components/loading-screen/loading-screen';
+import {store} from '../../store';
+import {fetchActiveFilmAction, fetchReviewsAction, fetchSimilarFilmsAction} from '../../store/api-actions';
+import Footer from '../footer/footer';
 
 type MoviePageProps = {
-  films: FilmType[],
   favoriteCount: number,
 }
 
-const MoviePage = ({films, favoriteCount}: MoviePageProps) => {
+const MoviePage = ({favoriteCount}: MoviePageProps) => {
   const id: number = parseInt(useParams().id || '0', 10);
-  const currentFilmData = films.find((current) => current.id === id);
+
+  store.dispatch(fetchActiveFilmAction(id));
+  store.dispatch(fetchReviewsAction(id));
+  store.dispatch(fetchSimilarFilmsAction(id));
+  const currentFilmData = useAppSelector((state) => state.activeFilm);
+  const currentFilmSimilar = useAppSelector((state) => state.activeFilmSimilar);
+
+  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
+
+  if (isDataLoaded || !currentFilmData) {
+    return <LoadingScreen />;
+  }
 
   if (!currentFilmData) {
     return <Navigate to={AppRoute.Main} />;
@@ -27,16 +40,10 @@ const MoviePage = ({films, favoriteCount}: MoviePageProps) => {
         <section className='catalog catalog--like-this'>
           <h2 className='catalog__title'>More like this</h2>
 
-          <CardSmallList films={films.filter((current) => current.genre === films[id].genre)} />
+          <CardSmallList films={currentFilmSimilar || []} />
         </section>
 
-        <footer className='page-footer'>
-          <Logo isLight/>
-
-          <div className='copyright'>
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </Fragment>
   );
