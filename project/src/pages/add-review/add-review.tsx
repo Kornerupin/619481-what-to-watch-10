@@ -1,22 +1,28 @@
-import {FilmType} from '../../types/film-type';
 import {Navigate, useParams} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import Logo from '../../components/logo/logo';
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, FormEvent, useState} from 'react';
+import {store} from '../../store';
+import {fetchActiveFilmAction, sendNewReviewAction} from '../../store/api-actions';
+import {useAppSelector} from '../../hooks';
+import LoadingScreen from '../../components/loading-screen/loading-screen';
 
-type AddReviewProps = {
-  filmsData: FilmType[],
-};
-
-const AddReview = ({filmsData}: AddReviewProps) => {
+const AddReview = () => {
   const id:number = parseInt(useParams().id || '0', 10);
 
-  const film = filmsData[id];
+  store.dispatch(fetchActiveFilmAction(id));
+
+  const film = useAppSelector((state) => state.activeFilm);
+  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
 
   const [stateData, setStateData] = useState({
-    rating: '5',
-    'review-text': 'test',
+    rating: '',
+    'review-text': '',
   });
+
+  if (isDataLoaded) {
+    return <LoadingScreen />;
+  }
 
   const filedInputHandler = (evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
     const {name, value} = evt.target;
@@ -29,6 +35,24 @@ const AddReview = ({filmsData}: AddReviewProps) => {
   if (!film) {
     return <Navigate to={AppRoute.Main} />;
   }
+
+  const sendRequestForAddReview = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    const rating = parseInt(stateData.rating, 10);
+    const comment = stateData['review-text'];
+
+    // if (rating === 0) {
+    // alert('Необходимо указать рейтинг фильма!');
+    // return false;
+    // }
+    // if (comment.length < 5) {
+    // alert('Слишком короткий отзыв!');
+    // return false;
+    // }
+
+    store.dispatch(sendNewReviewAction({filmId: id, comment, rating}));
+  };
 
   return (
     <section className='film-card film-card--full'>
@@ -71,7 +95,7 @@ const AddReview = ({filmsData}: AddReviewProps) => {
       </div>
 
       <div className='add-review'>
-        <form action='src/pages/add-review/add-review#' className='add-review__form'>
+        <form action='#' className='add-review__form' onSubmit={sendRequestForAddReview}>
           <div className='rating'>
             <div className='rating__stars'>
               <input className='rating__input' id='star-10' type='radio' name='rating' value='10' checked={stateData.rating === '10'} onChange={filedInputHandler} />
@@ -111,7 +135,6 @@ const AddReview = ({filmsData}: AddReviewProps) => {
             <div className='add-review__submit'>
               <button className='add-review__btn' type='submit'>Post</button>
             </div>
-
           </div>
         </form>
       </div>

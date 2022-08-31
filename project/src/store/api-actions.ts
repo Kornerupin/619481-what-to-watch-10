@@ -82,7 +82,7 @@ export const sendNewReviewAction = createAsyncThunk<void, ReviewDataType, {
 }>(
   'send/review',
   async ({filmId, comment, rating}, {dispatch, extra: api}) => {
-    const {data} = await api.post(APIRoute.Reviews + filmId, {comment, rating});
+    const {data} = await api.post(`${APIRoute.Reviews}/${filmId}`, {comment, rating});
     dispatch(sendReview(data));
   },
 );

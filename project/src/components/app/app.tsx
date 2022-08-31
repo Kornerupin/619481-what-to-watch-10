@@ -52,7 +52,11 @@ const App = (): JSX.Element => {
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReview filmsData={filmsAll}/>}
+          element={
+            <PrivateRoute>
+              <AddReview />
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.Player}
